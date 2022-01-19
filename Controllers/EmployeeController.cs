@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CORE6API.Controllers
@@ -19,7 +20,38 @@ namespace CORE6API.Controllers
         {
             employee_service = employee;
         }
-        
+
+        private static List<Employee> employee = new List<Employee>() { 
+        new Employee{Id = 0, FirstName="sample",LastName="sample", Place="sample",Position="sample"}
+        };
+
+        private async void GetTest()
+        {
+            await Task.Run(() =>
+           {
+               Thread.Sleep(5000);
+               Console.WriteLine("GetTest");
+           });
+
+        }
+
+        private  void GetTest2()
+        {
+            Thread.Sleep(5000);
+            Console.WriteLine("GetTest2");
+        }
+
+        [HttpGet]
+        [Route("GetAsyncCodeTest")]
+        public void  GetAsyncCodeTest()
+        {
+            GetTest();
+            GetTest2();
+            
+        }
+
+      
+
         [HttpGet]
         public async Task<ActionResult<List<Employee>>> Get()
         {
