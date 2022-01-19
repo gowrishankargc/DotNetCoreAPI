@@ -42,20 +42,16 @@ namespace CORE6API.Controllers
         }
 
         [HttpGet]
-        [Route("GetAsyncCodeTest")]
+        [Route("GetAsyncMethodTest")]
         public void  GetAsyncCodeTest()
         {
             GetTest();
             GetTest2();
-            
         }
-
-      
 
         [HttpGet]
         public async Task<ActionResult<List<Employee>>> Get()
         {
-
             var employees = await employee_service.GetAllEmployees();
             return Ok(employees);
         }
